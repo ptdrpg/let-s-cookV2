@@ -6,7 +6,8 @@ import Linktext from '../component/text/Linktext';
 import '../assets/login.css'
 import bannerPic from '../image/img/pic.jpeg'
 import { useState } from 'react';
-import { log } from 'console';
+// import { log } from 'console';
+import postuser from '../utils/postuser';
 
 interface recupInput {
   [name: string]: string,
@@ -21,6 +22,10 @@ const SIgnup = () => {
       ...user,
       [name] : value
     })
+  }
+
+  const post = () => {
+    postuser(user);
   }
   return (
     <div className='logContainer'>
@@ -49,7 +54,7 @@ const SIgnup = () => {
             <Paragraphe tag='p' children='Forget password ?' className='formGroupe' />
           </div>
           <div className='connection'>
-            <button type='button' className='log' id='Logbutton' >s'inscrire</button>
+            <button type='button' className='log' id='Logbutton' onClick={post} >s'inscrire</button>
           </div>
           <div className='flex sign-in'>
             <Paragraphe tag='p' children={`Don't have an account?`} className='formGroupe' />
