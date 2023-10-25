@@ -1,0 +1,61 @@
+.footer{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 107px 175px;
+    gap: 72px;
+}
+
+.footerList{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.flexicon{
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.firstgrid{
+    display: flex;
+    flex-direction: column;
+    gap: 74px;
+}
+
+.socialMedia{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.newForm{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    /* padding: 10px; */
+    /* padding: 0px 300px 0px 0px; */
+    align-items: center;
+}
+
+.footButton{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.flex{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.color{
+    color: black;
+}
+
+.footerLogo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

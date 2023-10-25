@@ -1,0 +1,80 @@
+.logBanner {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 75%;
+    padding-top: 77px;
+    padding-bottom: 152px;
+}
+
+.logPicture {
+    width: 100%;
+}
+
+.loginForm {
+    display: flex;
+    align-items: center;
+    background-color: #F2F2F2;
+    justify-content: center;
+}
+
+.inputForm {
+    display: flex;
+    flex-direction: column;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.formTittle {
+    text-align: center;
+}
+
+.connectGoogle {
+    align-items: center;
+    justify-content: center;
+    padding: 10px 70px;
+    border: #1976D2 solid 1px;
+    border-radius: 100px;
+}
+
+.forgetPassword {
+    text-align: end;
+}
+
+.connection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sign-in {
+    align-items: center;
+    justify-content: center;
+
+    a {
+        color: #3CCF17;
+    }
+}
+
+button {
+    cursor: pointer;
+}
+
+.logContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.log{
+    padding: 17px 30px;
+    border-radius: 30px;
+    background-color: #F27830;
+    border: none;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+}
