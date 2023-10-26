@@ -18,26 +18,26 @@ const Profiles = (props: Props) => {
     const handleModif = () => {
         modif? setModif(false):setModif(true)
     }
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const handleChange = (e:any) => {
         const target = e.target;
-		const data = target;
-		// const creatData = URL.createObjectUEventTarget & (HTMLInputElement | HTMLTextAreaElement)RL(data);
-		// setPic(creatData)
-		// setForm({
-		// 	...form,
-		// 	[target.name]: data.name
-		// })
-		console.log(data);
+		const data = target.files[0];
+		const creatData = URL.createObjectURL(data);
+        setPic(creatData);
+		setForm({
+			...form,
+			[target.name]: data.name
+		})
+		console.log(creatData);
 	}
   return (
       <>
         <div className='profileInformation'>
             <div className="profilePicture">
-                <img src={pic} alt="" width='150px' className='pdp' />      
+                <img src={pic} alt="" width='150px' height='150px' className='pdp' />      
                 <button className='modifPdp' onClick={handleModif} > {<Picture />} </button>      
                 {
                     modif && <div className="modifPicture">
-                    <input type="file" name="" id="" onChange={handleChange} />  
+                    <input type="file" name="avatar" id="" onChange={handleChange} />  
                 </div>       
                 } 
             </div>
