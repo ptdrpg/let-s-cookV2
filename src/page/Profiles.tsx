@@ -11,34 +11,42 @@ interface putingType {
 }
 
 type idTyping = {
-    id:string
+    userid:string
 }
 
 const Profiles = (props: Props) => {
     const [modif, setModif] = useState<boolean>(false);
-	const [form, setForm] = useState<putingType | idTyping>();
+	const [form, setForm] = useState<any>();
 
     const [pic, setPic] = useState<string>(Imagedefault);
-    const [id, setId] = useState<putingType | idTyping>();
+    
     const handleModif = () => {
         modif? setModif(false):setModif(true)
     }
+    const getId = localStorage.getItem('id');
     const handleChange = (e:any) => {
         const target = e.target;
 		const data = target.files[0];
 		const creatData = URL.createObjectURL(data);
         setPic(creatData);
-        const getId = localStorage.getItem('id');
 		setForm({
 			...form,
             [target.name]: data.name,
-        })
-        // setId({
-
-        // })
+        })  
+        console.log(form);
+        
     }
-    const changingPdp = () => {
-        postImage('http://localhost:4400/api/image', form, 'multipart/form-data')
+    const userId = {
+		userId: getId
+    }
+    const formData = new FormData();
+    formData.append('file', form)
+    const changingPdp = async () => {
+        try {
+           await postImage('http://localhost:4400/api/image', {formData, userId} , 'image/jpeg')
+        } catch (error) {
+            alert(error);
+        }
     }
   return (
       <>
@@ -48,7 +56,7 @@ const Profiles = (props: Props) => {
                 <button className='modifPdp' onClick={handleModif} > {<Picture />} </button>      
                 {
                     modif && <div className="modifPicture">
-                    <input type="file" name="avatar" id="" onChange={handleChange} />
+                    <input type="file" name="file" id="" onChange={handleChange} />
                     <button onClick={changingPdp}>update</button>
                 </div>       
                 } 

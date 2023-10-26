@@ -1,12 +1,12 @@
-import React from 'react'
+import React, { ElementType } from 'react'
 
 type Props = {
-    tag: string,
+    tag: ElementType,
     className: string,
     children: string,
 }
 const Paragraphe = ({ tag, className, children }: Props) => {
-    const Tag:any = tag
+    const Tag = tag
     return (
     <Tag className={className}>{children}</Tag>
   )

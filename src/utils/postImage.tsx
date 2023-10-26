@@ -6,7 +6,7 @@ type putingType = {
 }
 
 const postImage = async (url:string, body:any, contentType:string) => {
-    const res = await UserService.putUser(url, body, contentType)
+    const res = await UserService.postUser(url, body, contentType)
 }
 
 export default postImage;
