@@ -6,7 +6,7 @@ import Login from './page/Login';
 import Footer from './component/layout/Footer/Footer';
 import SIgnup from './page/SIgnup';
 import { useState } from 'react';
-import { secureHeapUsed } from 'crypto';
+import Profiles from './page/Profiles';
 
 function App() {
   const [connected, setConnected] = useState<boolean>(true)
@@ -15,8 +15,9 @@ function App() {
       <Nav connected={connected} setConnected={setConnected} />
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/signup' element={<SIgnup />} />
+        <Route path='/login' element={<Login setConnected={setConnected} />} />
+        <Route path='/signup' element={<SIgnup setConnected={setConnected} />} />
+        <Route path='/profile' element={<Profiles />} />
       </Routes>
       <Footer />
     </BrowserRouter>

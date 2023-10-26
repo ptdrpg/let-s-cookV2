@@ -42,3 +42,18 @@
     display: flex;
     gap: 20px;
 }
+
+.logButton{
+    padding: 10px 30px;
+    background-color: #F27830;
+    border: none;
+    border-radius: 30px;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.icon{
+    background: none;
+    border: none;
+}

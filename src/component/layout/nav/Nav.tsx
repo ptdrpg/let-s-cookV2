@@ -19,13 +19,15 @@ const items:item[]=[{label: 'Home', link: '/'},{label: 'Categories', link: '/cat
 
 const Nav = ({ connected, setConnected }: Props) => {
   useLayoutEffect(() => {
-    const getToken = localStorage.getItem('token');
-    if (getToken) {
-      setConnected(false);
-    }
-  })
+    const getToken = localStorage.getItem("token");
+    const refreshToken = localStorage.getItem("refreshtoken")
+    if (getToken || refreshToken) {
+      setConnected(false)
+    }  
+  },[])
   const logout = () => {
     localStorage.clear();
+    setConnected(true);
   }
   return (
     <div className='navbar'>
@@ -43,9 +45,9 @@ const Nav = ({ connected, setConnected }: Props) => {
       </div>
       }
       {
-        !connected && <div className='connectedbutton'>
-            <button  ><Acount /></button>
-            <button  ><Notification /></button>
+        !connected && <div className='connectedbutton flex'>
+            <Linkbutton label={<Acount />} link='/profile' className='icon' />
+            <Linkbutton label={<Notification />} link='/notification' className='icon' />
             <button className='logButton' onClick={logout} >Logout</button>
           </div>
       }

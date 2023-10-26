@@ -8,12 +8,18 @@ import bannerPic from '../image/img/pic.jpeg'
 import { useState } from 'react';
 // import { log } from 'console';
 import postuser from '../utils/postuser';
+import { useNavigate } from 'react-router-dom';
 
 interface recupInput {
   [name: string]: string,
 }
 
-const SIgnup = () => {
+type props = {
+  setConnected:React.Dispatch<React.SetStateAction<boolean>>
+}
+
+const SIgnup = ({setConnected}:props) => {
+  const navigate = useNavigate();
   const [user, setUser] = useState<recupInput>();
   const handle = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const {target} = e
@@ -25,7 +31,7 @@ const SIgnup = () => {
   }
 
   const post = () => {
-    postuser(user);
+    postuser('http://localhost:4400/api/user',user, navigate, setConnected);
   }
   return (
     <div className='logContainer'>

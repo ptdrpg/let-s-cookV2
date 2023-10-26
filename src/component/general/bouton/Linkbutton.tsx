@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import bouton from './button.module.css'
 
 type Props = {
-    label: string,
+    label: string | JSX.Element,
     link: string,
     className?: string
 }
@@ -12,7 +12,7 @@ type Props = {
 const Linkbutton = ({label, link, className }: Props) => {
   return (
       <>
-        <Link to={link} id={bouton.button} className={className} > {label} </Link>
+        <Link to={link} className={className} > {label} </Link>
       </>
   )
 }

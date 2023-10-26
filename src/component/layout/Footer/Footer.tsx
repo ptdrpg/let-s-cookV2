@@ -65,7 +65,7 @@ const fonctionProvisoir = () => {
 
 const Footer = (props: Props) => {
   return (
-    <footer>
+    <footer className={style.footWrap}>
       <div className={style.footer}>
         <div className={style.firstgrid}>
           <div className={style.socialMedia}>

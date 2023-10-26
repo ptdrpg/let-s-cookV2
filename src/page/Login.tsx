@@ -5,10 +5,32 @@ import { TextField } from '@mui/material';
 import Linktext from '../component/text/Linktext';
 import '../assets/login.css'
 import bannerPic from '../image/img/pic.jpeg'
+import loginService from '../utils/loginService';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 type Props = {}
-
-const Login = (props: Props) => {
+interface recupInput {
+  [name: string]: string,
+}
+type props = {
+  setConnected:React.Dispatch<React.SetStateAction<boolean>>
+}
+const Login = ({setConnected}:props) => {'http://localhost:4400/api/user'
+  
+  const navigate = useNavigate();
+  const [user, setUser] = useState<recupInput>();
+  const handle = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const {target} = e
+    const { name, value } = target
+    setUser({
+      ...user,
+      [name] : value
+    })
+  }
+  const loginFunction = () => {
+    loginService('http://localhost:4400/api/user/login', user, navigate, setConnected);
+  } 
   return (
     <div className='logContainer'>
       <div className='logBanner'>
@@ -24,14 +46,14 @@ const Login = (props: Props) => {
           </div>
           <div className='formTittle'><Paragraphe tag='p' children='or' className='formGroupe' /></div>
           <div className='inputForm'>
-            <TextField label="username" variant="standard" name='username' />
-            <TextField label="Password" type="password" autoComplete="current-password" variant="standard" name='password' />
+            <TextField label="username" variant="standard" name='username' onChange={handle} />
+            <TextField label="Password" type="password" autoComplete="current-password" variant="standard" name='password' onChange={handle} />
           </div>
           <div className='forgetPassword'>
             <Paragraphe tag='p' children='Forget password ?' className='formGroupe' />
           </div>
           <div className='connection'>
-            <button type='button' className='log' id='Logbutton'  >s'inscrire</button>
+            <button type='button' className='log' id='Logbutton'  onClick={loginFunction} >s'inscrire</button>
           </div>
           <div className='flex sign-in'>
             <Paragraphe tag='p' children={`Don't have an account?`} className='formGroupe' />
