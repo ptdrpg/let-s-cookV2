@@ -1,9 +1,7 @@
 import axios from "axios";
 
-type postingType = {
-    url: string,
-    body: any,
-    contentType: string
+type putingType = {
+    [name: string]: string,
 }
 
 export default class Http {
@@ -27,8 +25,17 @@ export default class Http {
             
         }
     }
-    static put() {
-        
+    static async put(url:string, body:putingType, contentType:string) {
+        try {
+            const postData = await axios.put(url, body, {
+                headers: {
+                    "Content-Type": contentType
+                }
+            })
+            return postData
+        } catch (error) {
+             
+        }
     }
     static delete() {
         

@@ -1,9 +1,7 @@
 import Http from "./http";
 
-type postingType = {
-    url: string,
-    body: any,
-    contentType: string
+type putingType = {
+    [name: string]: string,
 }
 
 export default class UserService extends Http {
@@ -18,8 +16,15 @@ export default class UserService extends Http {
     static async postUser(url: string, body:any, contentType:string) {
         try {
             const res = await this.post(url, body, contentType);
-            // console.log(res);
             
+            return res;
+        } catch (error) {
+            alert('mamorona compte amizay e');
+        }
+    }
+    static async putUser(url:string, body:putingType, contentType:string){
+        try {
+            const res = await this.put(url, body, contentType);
             return res;
         } catch (error) {
             alert('mamorona compte amizay e');
