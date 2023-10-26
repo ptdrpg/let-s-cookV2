@@ -13,9 +13,9 @@ export default class UserService extends Http {
             alert('tsisy lty ah')
         }
     }
-    static async postUser(url: string, body:any, contentType:string) {
+    static async postUser(url: string, body:any, contentType:string, data?: FormData) {
         try {
-            const res = await this.post(url, body, contentType);
+            const res = await this.post(url, body, contentType, data);
             
             return res;
         } catch (error) {

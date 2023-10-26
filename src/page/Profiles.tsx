@@ -31,19 +31,19 @@ const Profiles = (props: Props) => {
         setPic(creatData);
 		setForm({
 			...form,
-            [target.name]: data.name,
+            [target.name]: creatData,
         })  
         console.log(form);
         
     }
-    const userId = {
-		userId: getId
-    }
     const formData = new FormData();
     formData.append('file', form)
+    const userId = {
+		userid: getId
+    }
     const changingPdp = async () => {
         try {
-           await postImage('http://localhost:4400/api/image', {formData, userId} , 'image/jpeg')
+           await postImage('http://localhost:4400/api/image', { userId} , 'multipart/form-data')
         } catch (error) {
             alert(error);
         }

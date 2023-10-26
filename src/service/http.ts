@@ -13,12 +13,14 @@ export default class Http {
             alert(`erreur ${error}`);
         }
     }
-    static async post(url:string, body:any, contentType:string) {
+    static async post(url:string, body:any, contentType:string, data?: FormData) {
         try {
             const postData = await axios.post(url, body, {
                 headers: {
                     "Content-Type": contentType
-                }
+                },
+                data: data
+
             })
             return postData
         } catch (error) {
