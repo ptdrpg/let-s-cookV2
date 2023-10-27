@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react'
 import postImage from '../utils/postImage'
 import axios from 'axios'
 import FormData from 'form-data'
+import { log } from 'console'
 
 type Props = {}
 
@@ -13,7 +14,7 @@ type Props = {}
 
 const Profiles = (props: Props) => {
     const [modif, setModif] = useState<boolean>(false);
-	const [form, setForm] = useState<any>();
+	const [file, setForm] = useState<FormData>(new FormData());
 
     const [pic, setPic] = useState<string>(Imagedefault);
     
@@ -21,30 +22,21 @@ const Profiles = (props: Props) => {
         e.preventDefault()
         modif? setModif(false):setModif(true)
     }
-    const getId = localStorage.getItem('id');
-    const formData = new FormData();
     const handleChange = (e:any) => {
-        // const FormData = require('form-data');
         const target = e.target;
 		const data = target.files[0];
 		const creatData = URL.createObjectURL(data);
-        formData.append('file', data);
-        setForm(formData); 
+        setForm(data)
         setPic(creatData)
         
-
     }
-    const userId = {
-		userId: getId
-    }
-    const data = JSON.stringify(form)
-    // const forPosting ={ form, userId}
+    const userId = localStorage.getItem('id');
     const changingPdp = async (e: any) => {
         e.preventDefault();
         try {
             //    await postImage('http://localhost:4400/api/image', {...form, ...userId} , 'multipart/form-data')
             // await axios.post('http://localhost:4400/api/image', forPosting)
-            await axios.post('http://localhost:4400/api/image', { form, userId }, {
+            await axios.post('http://localhost:4400/api/image', { file, userId }, {
                 headers: {
                     "Content-Type": 'multipart/form-data'
                 }
