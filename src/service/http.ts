@@ -19,7 +19,6 @@ export default class Http {
                 headers: {
                     "Content-Type": contentType
                 },
-                data: data
 
             })
             return postData
