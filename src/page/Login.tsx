@@ -6,7 +6,7 @@ import Linktext from '../component/text/Linktext';
 import '../assets/login.css'
 import bannerPic from '../image/img/pic.jpeg'
 import loginService from '../utils/loginService';
-import { useState } from 'react';
+import { useState, useLayoutEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 type Props = {}
@@ -16,9 +16,14 @@ interface recupInput {
 type props = {
   setConnected:React.Dispatch<React.SetStateAction<boolean>>
 }
-const Login = ({setConnected}:props) => {'http://localhost:4400/api/user'
-  
+const Login = ({ setConnected }: props) => {
   const navigate = useNavigate();
+  useLayoutEffect(() => {
+        const authetificate = localStorage.getItem('token');
+    if (authetificate) {
+      navigate('/');
+        }
+    })
   const [user, setUser] = useState<recupInput>();
   const handle = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const {target} = e
