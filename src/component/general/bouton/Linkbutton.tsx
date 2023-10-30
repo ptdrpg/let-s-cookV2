@@ -12,7 +12,7 @@ type Props = {
 const Linkbutton = ({label, link, className }: Props) => {
   return (
       <>
-        <Link to={link} className={className} > {label} </Link>
+        <Link to={link} className={className} id={bouton.button} > {label} </Link>
       </>
   )
 }

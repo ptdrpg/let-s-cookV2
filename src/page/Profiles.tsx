@@ -11,12 +11,15 @@ type Props = {}
 
 
 
-const Profiles = (props: Props) => {
+const Profiles = () => {
+    
     const [modif, setModif] = useState<boolean>(false);
 	const [file, setForm] = useState<FormData>(new FormData());
     const [pic, setPic] = useState<string>(Imagedefault);   
     const navigate = useNavigate()
-    
+    const fetchavatar = localStorage.getItem('avatar');
+   console.log(fetchavatar);
+   
     const handleModif = (e:any) => {
         e.preventDefault()
         modif? setModif(false):setModif(true)
@@ -33,8 +36,6 @@ const Profiles = (props: Props) => {
     const changingPdp = async (e: any) => {
         e.preventDefault();
         try {
-            //    await postImage('http://localhost:4400/api/image', {...form, ...userId} , 'multipart/form-data')
-            // await axios.post('http://localhost:4400/api/image', forPosting)
             await axios.post('http://localhost:4400/api/image', { file, userId }, {
                 headers: {
                     "Content-Type": 'multipart/form-data'
