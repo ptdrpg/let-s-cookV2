@@ -1,12 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './nav.css'
 import Linkbutton from '../../general/bouton/Linkbutton'
 import Logo from '../../icon/Logo'
 import Searchinput from '../../general/input/Searchinput'
 import Linktext from '../../text/Linktext'
-import Acount from '../../icon/Acount'
 import Notification from '../../icon/Notification'
 import { useLayoutEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 type Props = {
   connected: boolean,
@@ -25,9 +25,15 @@ const Nav = ({ connected, setConnected }: Props) => {
       setConnected(false)
     }  
   },[])
+  const getavatar = localStorage.getItem('avatar');
+  const avatar = JSON.stringify(getavatar)
   const logout = () => {
     localStorage.clear();
     setConnected(true);
+  }
+  const navigate = useNavigate();
+  const Profile = () => {
+    navigate('/profile')
   }
   return (
     <div className='navbar'>
@@ -46,7 +52,9 @@ const Nav = ({ connected, setConnected }: Props) => {
       }
       {
         !connected && <div className='connectedbutton flex'>
-            <Linkbutton label={<Acount />} link='/profile' className='icon' />
+            <button className='profileButton' onClick={Profile}>
+              <img src={`http://localhost:4400/${JSON.parse(avatar)}`} alt="" width='40px' height='40px' className='imgButton' />
+            </button>
             <Linkbutton label={<Notification />} link='/notification' className='icon' />
             <button className='logButton' onClick={logout} >Logout</button>
           </div>

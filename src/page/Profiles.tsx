@@ -6,22 +6,20 @@ import { useState, useLayoutEffect, useEffect } from 'react'
 import axios from 'axios'
 import FormData from 'form-data'
 import { useNavigate } from 'react-router-dom'
-import UserService from '../service/userService'
 
 type Props = {}
 
 
 
 const Profiles = () => {
-    useEffect(() => {
+    useLayoutEffect(() => {
         const verif = localStorage.getItem('token');
         if (!verif) {
             navigate("/");
         }
-        
-    },[])   
-    const [pic, setPic] = useState<string>(Imagedefault); 
+    })   
     const navigate = useNavigate()
+    const [pic, setPic] = useState<string>(Imagedefault); 
     const fetchavatar = localStorage.getItem('avatar');
     const avatar = JSON.stringify(fetchavatar);
     // console.log(avatar);
