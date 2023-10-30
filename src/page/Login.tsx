@@ -36,6 +36,10 @@ const Login = ({ setConnected }: props) => {
   const loginFunction = () => {
     loginService('http://localhost:4400/api/user/login', user, navigate, setConnected);
   } 
+
+  const loading = () => {
+    alert("it's loading");
+  }
   return (
     <div className='logContainer'>
       <div className='logBanner'>
@@ -58,7 +62,7 @@ const Login = ({ setConnected }: props) => {
             <Paragraphe tag='p' children='Forget password ?' className='formGroupe' />
           </div>
           <div className='connection'>
-            <button type='button' className='log' id='Logbutton'  onClick={loginFunction} >s'inscrire</button>
+            <button type='button' className='log' id='Logbutton'  onClick={loginFunction}>s'inscrire</button>
           </div>
           <div className='flex sign-in'>
             <Paragraphe tag='p' children={`Don't have an account?`} className='formGroupe' />

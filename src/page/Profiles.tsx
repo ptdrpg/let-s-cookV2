@@ -22,7 +22,6 @@ const Profiles = () => {
     const [pic, setPic] = useState<string>(Imagedefault); 
     const fetchavatar = localStorage.getItem('avatar');
     const avatar = JSON.stringify(fetchavatar);
-    // console.log(avatar);
     
     const [modif, setModif] = useState<boolean>(false);
 	const [file, setForm] = useState<FormData>(new FormData());

@@ -19,9 +19,9 @@ type props = {
 
 const SIgnup = ({ setConnected }: props) => {
   const navigate = useNavigate();
+  const verif = localStorage.getItem('token');
   useLayoutEffect(() => {
-        const verif = localStorage.getItem('token');
-        if (!verif) {
+        if (verif) {
             navigate("/");
         }
     }) 
