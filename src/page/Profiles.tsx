@@ -2,24 +2,27 @@ import React from 'react'
 import Imagedefault from '../image/data/default.jpg'
 import '../assets/profile.css'
 import Picture from '../component/icon/Picture'
-import { useState, useLayoutEffect } from 'react'
+import { useState, useLayoutEffect, useEffect } from 'react'
 import axios from 'axios'
 import FormData from 'form-data'
 import { useNavigate } from 'react-router-dom'
+import UserService from '../service/userService'
 
 type Props = {}
 
 
 
 const Profiles = () => {
-    
+    const navigate = useNavigate()
+    useLayoutEffect(() => {
+        const verif = localStorage.getItem('token');
+        if (!verif) {
+            navigate("/");
+        }
+    })
     const [modif, setModif] = useState<boolean>(false);
 	const [file, setForm] = useState<FormData>(new FormData());
     const [pic, setPic] = useState<string>(Imagedefault);   
-    const navigate = useNavigate()
-    const fetchavatar = localStorage.getItem('avatar');
-   console.log(fetchavatar);
-   
     const handleModif = (e:any) => {
         e.preventDefault()
         modif? setModif(false):setModif(true)
