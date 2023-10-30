@@ -13,16 +13,22 @@ type Props = {}
 
 
 const Profiles = () => {
-    const navigate = useNavigate()
-    useLayoutEffect(() => {
+    useEffect(() => {
         const verif = localStorage.getItem('token');
         if (!verif) {
             navigate("/");
         }
-    })
+        
+    },[])   
+    const [pic, setPic] = useState<string>(Imagedefault); 
+    const navigate = useNavigate()
+    const fetchavatar = localStorage.getItem('avatar');
+    const avatar = JSON.stringify(fetchavatar);
+    // console.log(avatar);
+    
     const [modif, setModif] = useState<boolean>(false);
 	const [file, setForm] = useState<FormData>(new FormData());
-    const [pic, setPic] = useState<string>(Imagedefault);   
+      
     const handleModif = (e:any) => {
         e.preventDefault()
         modif? setModif(false):setModif(true)
@@ -32,7 +38,6 @@ const Profiles = () => {
 		const data = target.files[0];
 		const creatData = URL.createObjectURL(data);
         setForm(data)
-        setPic(creatData)
         
     }
     const userId = localStorage.getItem('id');
@@ -53,7 +58,7 @@ const Profiles = () => {
         <div className='profileInformation'>
             <form encType='multipart/form-data'>
                 <div className="profilePicture">
-                     <img src={pic} alt=""  width='150px' height='150px' className='pdp' />      
+                     <img src={`http://localhost:4400/${JSON.parse(avatar)}`} alt=""  width='150px' height='150px' className='pdp' />      
                     <button className='modifPdp' onClick={handleModif} > {<Picture />} </button>      
                     {
                         modif && <div className="modifPicture">
