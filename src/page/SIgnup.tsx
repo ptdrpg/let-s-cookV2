@@ -5,8 +5,7 @@ import { TextField } from '@mui/material';
 import Linktext from '../component/text/Linktext';
 import '../assets/login.css'
 import bannerPic from '../image/img/pic.jpeg'
-import { useState } from 'react';
-// import { log } from 'console';
+import { useState, useLayoutEffect } from 'react';
 import postuser from '../utils/postuser';
 import { useNavigate } from 'react-router-dom';
 
@@ -18,8 +17,14 @@ type props = {
   setConnected:React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const SIgnup = ({setConnected}:props) => {
+const SIgnup = ({ setConnected }: props) => {
   const navigate = useNavigate();
+  useLayoutEffect(() => {
+        const verif = localStorage.getItem('token');
+        if (!verif) {
+            navigate("/");
+        }
+    }) 
   const [user, setUser] = useState<recupInput>();
   const handle = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const {target} = e

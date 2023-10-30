@@ -18,15 +18,20 @@ const items:item[]=[{label: 'Home', link: '/'},{label: 'Categories', link: '/cat
 
 
 const Nav = ({ connected, setConnected }: Props) => {
+  const getavatar = localStorage.getItem('avatar');
+  const avatar = JSON.stringify(getavatar)
+  const [set, setSet] = useState<string>();
+  const url = `http://localhost:4400/${JSON.parse(avatar)}`
   useLayoutEffect(() => {
     const getToken = localStorage.getItem("token");
     const refreshToken = localStorage.getItem("refreshtoken")
     if (getToken || refreshToken) {
       setConnected(false)
-    }  
-  },[])
-  const getavatar = localStorage.getItem('avatar');
-  const avatar = JSON.stringify(getavatar)
+      setSet(url)
+    } else {
+      setSet('pdp')
+    }
+  })
   const logout = () => {
     localStorage.clear();
     setConnected(true);
@@ -53,7 +58,7 @@ const Nav = ({ connected, setConnected }: Props) => {
       {
         !connected && <div className='connectedbutton flex'>
             <button className='profileButton' onClick={Profile}>
-              <img src={`http://localhost:4400/${JSON.parse(avatar)}`} alt="" width='40px' height='40px' className='imgButton' />
+              <img src={set} alt="" width='40px' height='40px' className='imgButton' />
             </button>
             <Linkbutton label={<Notification />} link='/notification' className='icon' />
             <button className='logButton' onClick={logout} >Logout</button>
