@@ -50,6 +50,7 @@ const Profiles = () => {
             alert(error);
         }
     }
+    const username = localStorage.getItem('username');
   return (
       <>
         <div className='profileInformation'>
@@ -64,6 +65,7 @@ const Profiles = () => {
                         </div>       
                     }    
                   </div>
+                  <h2 className='profilePicture'>{username}</h2>
             </form>
         </div>
       </>

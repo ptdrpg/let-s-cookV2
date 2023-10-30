@@ -8,12 +8,14 @@ const loginService = async (url: string,user: any, navigate: any, setConnected:R
     const fetchRefresh = res?.data.refreshToken;
     const fetchId = res?.data.user._id;
     const fetchavatar = res?.data.user.avatar.nameHashed;
+    const fetchUsername = res?.data.user.username;
     
     if (fetchToken) {
         localStorage.setItem('token', fetchToken);
         localStorage.setItem('refreshToken', fetchRefresh);
         localStorage.setItem('id', fetchId);
-        localStorage.setItem('avatar', fetchavatar)
+        localStorage.setItem('avatar', fetchavatar);
+        localStorage.setItem('username', fetchUsername);
         
         const getToken = localStorage.getItem('token');
         if (getToken) {
